@@ -2,23 +2,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <locale.h>
 #include <stdbool.h>
+#include <time.h> 
 
 char *CI;
 bool b64;
 int cotaSuperior=500000;
+int cotaInferior=111111;
 
-int calcVerif(char *CI)
+char *parseCI()
 {
-
+	return NULL;
 }
 
-char *calcRandomCI(bool valorAcotado)
+int verifDigit(int ciRaw)
 {
-	int randomCiRaw=(rand()%(cotaSuperior-100000+1));
-	printf("%d",randomCiRaw);
-	return NULL;
+	return 0;
+}
+
+int calcRandomCI(bool valorAcotado)
+{
+	time_t sec;
+	time(&sec);
+	srand((unsigned int) sec);
+	int randomCiRaw = rand() % (cotaSuperior - cotaInferior + 1) + cotaInferior; 
+	return randomCiRaw;
 }
 
 void optHelp()
@@ -28,8 +36,6 @@ void optHelp()
 
 int main (int argc, char **argv)
 {
-	setlocale(LC_CTYPE,"es_ES.UTF-8");
-	
 	char *cvalue = NULL;
 	int index;
 	int c;
@@ -41,10 +47,10 @@ int main (int argc, char **argv)
 		switch (c)
 		{
 			case 'g':
-				printf("Ci generada: %s",calcRandomCI(true));
+				printf("Ci generada: %d",calcRandomCI(true));
 				return 0;
 			case 'G':
-				printf("Ci generada: %s",calcRandomCI(false));
+				printf("Ci generada: %d",calcRandomCI(false));
 				return 0;
 			case 'v':
 				cvalue = optarg;
