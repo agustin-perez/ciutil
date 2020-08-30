@@ -7,8 +7,8 @@
 
 char *CI;
 bool b64;
-int cotaSuperior=500000;
-int cotaInferior=111111;
+int cotaSuperior=5;
+int cotaInferior=1;
 
 char *parseCI()
 {
@@ -22,10 +22,16 @@ int verifDigit(int ciRaw)
 
 int calcRandomCI(bool valorAcotado)
 {
+	int ciRaw[7];
 	time_t sec;
-	time(&sec);
-	srand((unsigned int) sec);
-	int randomCiRaw = rand() % (cotaSuperior - cotaInferior + 1) + cotaInferior; 
+	if (valorAcotado)
+	{
+		time(&sec);
+		srand((unsigned int) sec);
+		for (int i = 0; i<ciRaw; i++)
+		int randomCiRaw = rand() % (cotaSuperior - cotaInferior + 1) + cotaInferior; 
+	}
+	
 	return randomCiRaw;
 }
 
