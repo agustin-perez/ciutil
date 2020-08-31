@@ -44,7 +44,7 @@ char *calcRandomCI(bool valorAcotado)
 				ciRaw[i] = rand() % 9;
 		}
 	}
-	return sprintf(str, "%d.%d%d%d.%d%d%d", )
+	//return
 }
 
 void optHelp()
