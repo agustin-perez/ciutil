@@ -8,7 +8,7 @@
 char *CI;
 bool b64;
 int cotaSuperior=5;
-int cotaInferior=1;
+int cotaInferior=0;
 
 char *parseCI()
 {
@@ -20,19 +20,31 @@ int verifDigit(int ciRaw)
 	return 0;
 }
 
-int calcRandomCI(bool valorAcotado)
+char *calcRandomCI(bool valorAcotado)
 {
 	int ciRaw[7];
+	char noVerifCI[9];
 	time_t sec;
 	if (valorAcotado)
 	{
-		time(&sec);
-		srand((unsigned int) sec);
-		for (int i = 0; i<ciRaw; i++)
-		int randomCiRaw = rand() % (cotaSuperior - cotaInferior + 1) + cotaInferior; 
+		for (int i = 0; i < sizeof(ciRaw); i++)
+		{
+			time(&sec);
+			srand((unsigned int) sec);
+			ciRaw[i] = rand() % (cotaSuperior - cotaInferior + 1) + cotaInferior;
+		}
+		return ciRaw;
 	}
-	
-	return randomCiRaw;
+	else
+	{
+		for (int i = 0; i < sizeof(ciRaw); i++)
+		{
+				time(&sec);
+				srand((unsigned int) sec);
+				ciRaw[i] = rand() % 9;
+		}
+	}
+	return sprintf(str, "%d.%d%d%d.%d%d%d", )
 }
 
 void optHelp()
